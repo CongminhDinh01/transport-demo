@@ -6,6 +6,8 @@ export const useChat = (selectedModel: string) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [previousQuestions, setPreviousQuestions] = useState<string[]>([]);
+
   const sendMessage = useCallback(async (content: string) => {
     if (!selectedModel) {
       alert('Please select a model first');
@@ -20,6 +22,7 @@ export const useChat = (selectedModel: string) => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    setPreviousQuestions(prev => [...new Set([content, ...prev])].slice(0, 20)); 
     setIsLoading(true);
 
     try {
@@ -61,5 +64,6 @@ export const useChat = (selectedModel: string) => {
     isLoading,
     sendMessage,
     clearChat,
+    previousQuestions,
   };
 };
