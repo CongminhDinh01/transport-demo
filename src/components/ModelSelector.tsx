@@ -25,9 +25,6 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
       >
         <Bot className="w-5 h-5 text-blue-400" />
         <div className="flex-1 text-left">
-          <div className="font-medium text-white">
-            {selectedModelData?.name || 'Select Model'}
-          </div>
           <div className="text-sm text-gray-300">
             {selectedModelData?.provider}
           </div>
